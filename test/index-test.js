@@ -1,47 +1,87 @@
-'use strict';
+// dwarfrollcall
 
-describe("dwarfRollCall", function() {
-      it("prints out dwarfs in a numbered list based on an array'", function() {
-        var dwarves = ["Dopey", "Grumpy", "Bashful"];
-        expect(dwarfRollCall(dwarves)).toEqual("1. Dopey 2. Grumpy 3. Bashful ");
-      });
+var theArray= ["Doc", "Dopey", "Bashful", "Grumpy"];
+function mapping(name,index){
+	return (index+1)+ "."+ name; // returns the number placement of the elements (1. , 2. , 3. , 4.)
+}
+function mapFn(arr){ 
+	return arr.map(mapping).join(' ') // maps the mapping function to each element of the array, then it combines the new array into a string.
+}
+var result= mapFn(theArray);
+console.log(result); // the result.
+
+
+// Summon Captain Planet
+var planeteerCalls = ["earth", "wind", "fire", "water", "heart"];
+
+var map = planeteerCalls.map(function(x) { // maps the function to each element of the array.
+	return x.toUpperCase() + "!";
 });
 
-describe("summonCaptainPlanet", function() {
-  it("returns an array with the same number of elements that it was given", function() {
-        var veggies = ["carrot", "cucumber", "pepper"];
-        expect(summonCaptainPlanet(veggies).length).toEqual(3);
-  });
+console.log(map); // LOGS THE NEW MAP ARRAY WITH THE DESIRED RESULTS
+console.log(map.length); // length of the map array
 
-  it("uppercases each element and adds an exclamation mark", function() {
-        var fruits = ["apple", "banana", "orange"];
-        var result = summonCaptainPlanet(fruits);
-        expect(result[0]).toEqual("APPLE!");
-        expect(result[1]).toEqual("BANANA!");
-        expect(result[2]).toEqual("ORANGE!");
-  });
-});
+function summonCaptainPlanet() {
+	console.log(map)
+};
 
-describe("longPlaneteerCalls", function() {
-      it("returns true if any calls are longer than 4 characters", function() {
-        var longCalls = ["earth", "wind", "fire", "water", "heart"];
-        expect(longPlaneteerCalls(longCalls)).toBe(true);
-      });
+summonCaptainPlanet(); // CALLING THE FUNCTION TO GET THE DESIRED ARRAY
 
-      it("returns false if no calls are longer than 4 characters", function() {
-        var shortCalls = ["wind", "fire"];
-        expect(longPlaneteerCalls(shortCalls)).toBe(false);
-      });
-});
 
-describe("findTheCheese", function() {
-      it("returns the first element of the array that is cheese", function() {
-        var cheddarCheese = ["banana", "cheddar", "sock"];
-        expect(findTheCheese(cheddarCheese)).toEqual("cheddar");
-      });
 
-      it("returns 'no cheese!' if the array does not contain a type of cheese", function() {
-        var noCheeseArray = ["banana", "tomato", "sock"];
-        expect(findTheCheese(noCheeseArray)).toEqual("no cheese!");
-      });
-});
+// Long Planeteer Calls
+
+var shortwords = ["wind", "fire"];
+var assortedwords = ["earth" , "wind", "heart", "fire"];
+
+function longplaneteercalls (arr) {
+	let shortlength = 4 // a container variable which refers to the maximum number to return false
+	
+
+	if (arr.length > 0) { 
+		for (let i = 0; i < arr.length; i++) { //iterates through any array
+			if (arr[i].length <= shortlength) { //if the word in the array is shorter than 4
+				return false
+			} else { //otherwise do this
+				return true
+			};
+		};
+	};
+};
+
+longplaneteercalls(shortwords); // returns FALSE
+longplaneteercalls(assortedwords); // returns TRUE
+
+// FIND THE CHEESE
+
+var cheeses = ['cheddar', 'gouda' , 'camembert'];
+var snacks = ["crackers", "gouda", "thyme"];
+var soup = ["tomato soup", "cheddar", "oyster crackers", "gouda"];
+
+
+var ingredients = ["garlic", "rosemary", "bread"];
+
+
+
+
+function FindtheCheese(arr) {
+	var cheesefound;
+
+
+	for (let i = 0; i < cheeses.length; i++) { // iterates through the cheeses array
+		for (let j = 0; j < arr.length; j++) { // then iterates through given array
+			if (arr[j] === cheeses[i] ) { // if an element at any given array is equal to any element in the cheeses array, this code is executed
+				cheesefound = (arr[j]);
+				return cheesefound
+				
+			}
+		}
+	}
+
+	return "No cheese!" // executed if there are no cheeses in the array
+};
+
+
+FindtheCheese(ingredients); // returns NO CHEESE!
+FindtheCheese(snacks); // returns 'gouda'
+FindtheCheese(soup); // returns "cheddar"
